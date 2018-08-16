@@ -1,9 +1,13 @@
-// $(document).ready(function() {
+$(document).ready(function() {
+   
+   //counter variables
     var wins = 0;
     var losses = 0;
-    var targetNumber = "";
     var totalCount = 0; 
+    //blank string variables to be filled
+    var targetNumber = "";
     var gemVal = "";   
+    //array of crystal image objects
     var crystalImages = [
         {
             title: "amber",
@@ -34,60 +38,85 @@
             alt: "zircon",
         },
     ];
-        
-    var contentPush = function() {
-        $(".instructions").text(" play ball");
-        targetNumber = Math.floor(Math.random() * 102 + 19);
-        $(".random-number").text(targetNumber);
-        $(".winCount").text(wins);
-        $(".lossCount").text(losses);
-    }
+   
+    //set random target number 19-120  
+    targetNumber = Math.floor(Math.random() * 102 + 19);
+    //display random target number on screen
+    $(".random-number").text(targetNumber);
+    //display total count on screen
+    $(".number-count").text(totalCount);
+    //display wins on screen
+    $(".winCount").text(wins);
+    //display losses on screen
+    $(".lossCount").text(losses);
 
+    //add images to screen with attributes
+    function imageNumGen () {
+        //run through image array to create multiple images and obtain object info
+        for (var i = 0 ; i < crystalImages.length ; i++) {
+            //create picture element on screen
+            var gemPic = $("<img>");
+            //set attributes for that image element
+            gemPic.attr({
+                alt: crystalImages[i].alt,
+                class: crystalImages[i].class,
+                id: crystalImages[i].id,
+                src: crystalImages[i].src,
+            });
+            //append crystal image elements created from arry in blank span
+            $(".crystal-images").append(gemPic);
+            //wrap each image in a button to be clicked
+            gemPic.wrap("<button class='gemButton'></button>")
+            //set random number between 1-12 to equal each buttons value
+            gemVal = Math.floor(Math.random() * 12 + 1);
+            //apply that value to each button 
+            gemPic.parent().attr("value", gemVal);      
+        };
+    } 
+
+    //refresh values without refreshing page
     function resetGame () {
+        //reset variables
+        totalCount = 0; 
         targetNumber = Math.floor(Math.random() * 102 + 19);
-        totalCount = 0;  
+        //empty current images and values to replace with new ones
+        $(".crystal-images").empty();
+        //set random target number 19-120  
+        targetNumber = Math.floor(Math.random() * 102 + 19);
+        //display random target number on screen
         $(".random-number").text(targetNumber);
+        //display total count on screen
         $(".number-count").text(totalCount);
-    }
-    
-        
-    //display images, assign attributes, and assign values
-    for (var i = 0 ; i < crystalImages.length ; i++) {
-        var gemPic = $("<img>");
-        gemPic.attr({
-            alt: crystalImages[i].alt,
-            title: crystalImages[i].title,
-            class: crystalImages[i].class,
-            id: crystalImages[i].id,
-            src: crystalImages[i].src,
-        });
-        $(".crystal-images").append(gemPic);
-        gemPic.wrap("<button class='gemButton'></button>")
-        gemVal = Math.floor(Math.random() * 12 + 1);
-        gemPic.parent().attr("value", gemVal);      
-    };
+        //run imageNumGen to display images with new values
+        imageNumGen();
+        winLose();
+    }; 
 
-    //add values of gem count clicks together
-    $(".gemButton").on("click", function () {
-        buttonVal = ($(this).val());
-        buttonVal = parseInt(buttonVal);
-        totalCount += buttonVal;
-        totalCount = parseInt(totalCount);
-        $(".number-count").html(totalCount);
-        if (totalCount === targetNumber) {
-            alert("you win!");
-            wins++;
-            $(".winCount").text(wins);
-            resetGame();
-        } else if (totalCount > targetNumber) {
-            alert("you lose!");
-            losses++;
-            $(".lossCount").text(losses);      
-            resetGame();
-        }    
-    });
-    
-    contentPush();
-    
-// })
+    //run win/loss procedure
+    function winLose () {
+        $("button").on("click", function () {
+            //obtain value from button
+            var buttonVal = ($(this).val());
+            //parse string val to return integer
+            buttonVal = parseInt(buttonVal);
+            //add increment to total count
+            totalCount += buttonVal;
+            $(".number-count").html(totalCount); 
+            if (totalCount === targetNumber) {
+                wins++;
+                $(".winCount").text(wins);
+                resetGame();
+            } else if (totalCount > targetNumber) {
+                losses++;
+                $(".lossCount").text(losses);     
+                resetGame();
+            }
+        });   
+    };
+     //display images on screen
+     imageNumGen();
+     //act on click event
+     winLose(); 
+
+})
 
