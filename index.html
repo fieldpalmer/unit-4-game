@@ -6,43 +6,52 @@
     <title>Crystal Collector</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css" />
     <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/reset.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="./assets/css/style.css" />    
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 </head>
 <body>
-    <header class="container">
-        <nav class="row navbar navbar-fixed-top">
-            <h1 class="display-3">Get'chur Gems!</h1>            
+    <header class="container-fluid text-light">
+        <nav class="row navbar navbar-fixed-top ">
+            <h1 class="display-4 white">Hi Brooks!</h1>            
         </nav>
     </header>
-    <main class="container">
-        <hr>
-        <div class="info-box">
-            <p>Instructions: Click on each gem to increase your current total. Remember the gem values and try to get your current total to match the target number.<span class="instructions"></span></p>
-        </div>
-        <hr>
-        <div class="match-number">
-            <h2>Target Number: <span class="random-number"></span></h2>
-        </div>
-        <div class="total-count">
-            <h2>Your Current Total: <span class="number-count"></span></h2>
-        </div>
-        <hr>
-        <div class="crystals">
-            <span class="crystal-images"></span>
-        </div>
-        <hr>
-        <div class="record">
-            <h3>Wins: <span class="winCount"></span></h3>
-            
-            <h3>Losses: <span class="lossCount"></span></h3>
+    <div class="content-box">
+        <main class="container">
+            <hr>
+                <div class="row info-box">
+                    <p>Instructions: Click on each gem to increase your current total. Remember the gem values and try to get your current total to match the target number.<span class="instructions"></span></p>
+                </div>
+                <hr>
+                <div class="row">
+                    <div class="col-sm-12 col-lg-6">
+                        <div class="match-number">
+                            <h2>Target Number: <span class="random-number"></span></h2>
+                        </div>
+                        <div class="total-count">
+                            <h2>Your Current Total: <span class="number-count"></span></h2>
+                        </div>
+                        <hr>
+                        <div class="record">
+                            <h3>Wins: <span class="winCount"></span></h3>
+                            <h3>Losses: <span class="lossCount"></span></h3>
+                        </div>
+            <hr>    
 
-        </div>
+                    </div>
+                    <div>
+                        <div class="crystals">
+                            <span class="crystal-images"></span>
+                        </div>
+                    </div>
+                </div>
+        </main>
+    </div>
 
-    </main>
     <footer>
-
+        <nav class="row navbar navbar-fixed-bottom ">
+            <h2>Hope you can count!</h2>            
+        </nav>
     </footer>
     <script src="./assets/javascript/game.js"></script>
 </body>
