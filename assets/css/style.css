@@ -10,8 +10,12 @@ body {
 }
 
 header, footer {
-    background-color: orangered;
+    background-color: rgba(20, 12, 48, 0.63);
     text-align: center;
+}
+
+footer {
+    margin-top: 105px;
 }
 
 .content-box { 
